@@ -23,6 +23,38 @@ class HomeController extends Controller
      */
     public function index()
     {
+           
+         $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
+ try{
+       //creamos una instancía de la clase phpmailer
+       // $mail = new PHPMailer();
+        //$mail = new PHPMailer;
+//$mail->SMTPDebug = 3;                               // Enable verbose debug output
+
+$mail->isSMTP();                                      // Set mailer to use SMTP
+$mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+$mail->SMTPAuth = true;                               // Enable SMTP authentication
+$mail->Username = 'rmcentinela@gmail.com';                 // SMTP username
+$mail->Password = 'varekay1';                           // SMTP password
+$mail->Port = 587;                                    // TCP port to connect to
+
+$mail->From = 'rmcentinela@gmail.com';
+$mail->FromName = 'Test phpmailer';
+$mail->addAddress('tsubasa_80@hotmail.com');               // Name is optional
+
+$mail->isHTML(true);                                  // Set email format to HTML
+
+$mail->Subject = 'Prueba de correo phpMailer';
+$mail->Body    = '<a href="www.google.com">Link</a> <b>in bold!</b>';
+$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+$mail->send();
+ 
+ }catch(phpmailerException $e){
+    dd($e);
+ }catch(Exception $e){
+    dd($e);
+ } 
         /* 
             // $db = DB::connection();
         $mysqli = new PDO('mysql:host=localhost;dbname=servicios', "root", "");
