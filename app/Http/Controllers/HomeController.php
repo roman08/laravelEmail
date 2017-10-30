@@ -23,6 +23,17 @@ class HomeController extends Controller
      */
     public function index()
     {
+
+    	        return view('prueba');
+        $path = public_path() . '/LogosProducto/';
+     
+     $carpeta = '/ruta/a/mi/carpeta';
+if (!file_exists($path)) {
+    mkdir($path, 0777, true);
+        dd('folder_creado');
+
+}  
+
            
          $mail = new \PHPMailer\PHPMailer\PHPMailer(true);
  try{
